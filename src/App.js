@@ -2,9 +2,12 @@ import React, {useEffect, useState} from "react";
 import "./App.css";
 import axios from "axios";
 import NasaCard from "./NasaCard";
+import { Container, Row } from "reactstrap";
 
 function App() {
   const [images, setImages] = useState([]);
+
+  const [date, setDate] = useState([]);
 
   useEffect(() => {
     axios
@@ -12,21 +15,20 @@ function App() {
     .then(response => {
       console.log(response);
       setImages(response.data.photos);
+      setDate(response.data.photos.earth_date)
     })
     .catch(error => {
       console.log(error);
     })
   }, []);
   return (
-    <div className="App">
+    <Container className="App">
+      <Row>
       {images.map(marsUrl => {
-        return <NasaCard imgUrl={marsUrl}/>;
+        return <NasaCard imgUrl={marsUrl.img_src} earthDate={marsUrl.earth_date}/>;
       })}
-      <p>
-        Read through the instructions in the README.md file to build your NASA
-        app! Have fun 🚀!
-      </p>
-    </div>
+      </Row>
+    </Container>
   );
 }
 

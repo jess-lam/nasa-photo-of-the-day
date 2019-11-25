@@ -1,11 +1,17 @@
 import React from "react";
+import { Card, CardImg, CardBody, CardText, Col } from "reactstrap";
 
 const NasaCard = props => {
     return (
-        <div className="mars-card" key="card">
-            <img className="mars-img" alt="random mars" src={props.imgUrl} />
-            <h2>Mars Photo of the Day</h2>
-        </div>
+        <Col xs="6" lg ="3" className="mars-card" key="card">
+            <Card>
+                <CardImg className="mars-img" alt="random mars" src={props.imgUrl} />
+                    <CardBody>
+                        <CardText>{props.earthDate}</CardText>
+                    </CardBody>
+            </Card>
+            
+        </Col>
     );
 };
 
